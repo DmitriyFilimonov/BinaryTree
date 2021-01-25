@@ -60,7 +60,6 @@ namespace BinaryTree
                     currentNode.Count++;
                     return;
                 }
-                currentNode.Left = new Node();
                 Add(value, currentNode.Left);
             }
             if (value > currentNode.Value)

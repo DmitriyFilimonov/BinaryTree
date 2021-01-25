@@ -6,6 +6,7 @@ namespace BinaryTree
 {
     public interface ITree
     {
+        string Print();
         void Add(int value);
         void Delete(int value);
         void Read();

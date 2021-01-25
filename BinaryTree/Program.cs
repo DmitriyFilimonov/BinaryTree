@@ -13,6 +13,7 @@ namespace BinaryTree
             tree.Add(3);
             tree.Add(-5);
             tree.Add(5);
+            tree.Add(0);
         }
     }
 }

@@ -19,5 +19,10 @@ namespace BinaryTree
             Value = value;
             Count = 1;
         }
+        public Node(int value, int count)
+        {
+            Value = value;
+            Count = count;
+        }
     }
 }

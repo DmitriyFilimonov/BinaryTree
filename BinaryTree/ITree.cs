@@ -8,7 +8,7 @@ namespace BinaryTree
     {
         string Print();
         void Add(int value);
-        void Delete(int value);
+        void DeleteOnByValue(int value);
         void Read();
         void GetElementByValue(int value);
         void GetMax();

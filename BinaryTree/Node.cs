@@ -14,5 +14,10 @@ namespace BinaryTree
         {
             Count = 0;
         }
+        public Node(int value)
+        {
+            Value = value;
+            Count = 1;
+        }
     }
 }

@@ -42,8 +42,7 @@ namespace BinaryTree
             {
                 if (_root.Left == null)
                 {
-                    _root.Left = new Node();
-                    _root.Left.Value = value;
+                    _root.Left = new Node(value);
                 }
                 Add(value, _root.Left);
             }
@@ -51,8 +50,7 @@ namespace BinaryTree
             {
                 if (_root.Right == null)
                 {
-                    _root.Right = new Node();
-                    _root.Right.Value = value;
+                    _root.Right = new Node(value);
                 }
                 Add(value, _root.Right);
             }
@@ -76,16 +74,12 @@ namespace BinaryTree
             {
                 if (currentNode.Left == null)
                 {
-                    currentNode.Left = new Node();
-                    currentNode = currentNode.Left;
-                    currentNode.Value = value;
-                    currentNode.Count++;
+                    currentNode.Left = new Node(value);
                     return;
                 }
                 if (value > currentNode.Left.Value)
                 {
-                    currentNode.Right = new Node();
-                    currentNode.Right.Value = currentNode.Value;
+                    currentNode.Right = new Node(currentNode.Value);
                     currentNode.Value = value;
                     return;
                 }
@@ -95,16 +89,12 @@ namespace BinaryTree
             {
                 if (currentNode.Right==null)
                 {
-                    currentNode.Right = new Node();
-                    currentNode = currentNode.Right;
-                    currentNode.Value = value;
-                    currentNode.Count++;
+                    currentNode.Right = new Node(value);
                     return;
                 }
                 if (value > currentNode.Right.Value)
                 {
-                    currentNode.Left = new Node();
-                    currentNode.Left.Value = currentNode.Value;
+                    currentNode.Left = new Node(currentNode.Value);
                     currentNode.Value = value;
                 }
                 Add(value, currentNode.Right);

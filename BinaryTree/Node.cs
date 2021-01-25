@@ -10,5 +10,9 @@ namespace BinaryTree
         public Node Right { get; set; }
         public int Value { get; set; }
         public int Count { get; set; }
+        public Node ()
+        {
+            Count = 0;
+        }
     }
 }

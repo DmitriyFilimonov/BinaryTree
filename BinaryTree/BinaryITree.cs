@@ -73,26 +73,33 @@ namespace BinaryTree
         {
             DeleteOneByValue(value, _root);
         }
-        private Node DeleteOneByValue(int value, Node currentNode)
+        private Node DeleteOneByValue(int value, Node subRoot)
         {
-            if (currentNode == null)
+            if (subRoot==null)
+                return subRoot;
+            if (value < subRoot.Value)
+                subRoot = DeleteOneByValue(value, subRoot.Left);
+            else if (value > subRoot.Value)
+                subRoot = DeleteOneByValue(value, subRoot.Right);
+            else if ((subRoot.Left != null) && (subRoot.Right != null))
             {
-                return currentNode;
+                Node tmpSubRoot = GetMinNode(subRoot.Right);
+                subRoot.Value = tmpSubRoot.Value;
+                subRoot.Count = tmpSubRoot.Count;
+                subRoot.Right = DeleteOneByValue(value, subRoot.Right);
             }
-
-            if (value == currentNode.Value)
+            else
             {
-                if ()
-                currentNode = currentNode.Right;
-                return currentNode;
+                if (subRoot.Left != null)
+                    subRoot = subRoot.Left;
+                else if (subRoot.Right != null)
+                    subRoot = subRoot.Right;
+                else
+                {
+                    subRoot = null;
+                }
             }
-            
-            if (value>currentNode.Value)
-            {
-                currentNode.Right = DeleteOneByValue(value, currentNode.Right);
-            }
-           
-            return currentNode;
+            return subRoot;
         }
 
         public void GetElementByValue(int value)
@@ -110,16 +117,37 @@ namespace BinaryTree
             throw new NotImplementedException();
         }
 
-        public void GetMax()
+        public int GetMaxValue()
         {
-            throw new NotImplementedException();
+            Node maxNode = GetMaxNode(_root);
+            return maxNode.Value;
+        }
+        private Node GetMaxNode(Node maxNode)
+        {
+            
+            if (maxNode.Right!=null)
+            {
+                maxNode = GetMaxNode(maxNode.Right);
+            }
+
+            return maxNode;
         }
 
-        public void GetMin()
+        public int GetMinValue()
         {
-            throw new NotImplementedException();
+            Node minNode = GetMinNode(_root);
+            return minNode.Value;
         }
+        private Node GetMinNode(Node minNode)
+        {
 
+            if (minNode.Left != null)
+            {
+                minNode = GetMinNode(minNode.Left);
+            }
+
+            return minNode;
+        }
 
         public void Read()
         {

@@ -11,8 +11,8 @@ namespace BinaryTree
         void DeleteOneByValue(int value);
         void Read();
         void GetElementByValue(int value);
-        void GetMax();
-        void GetMin();
+        int GetMaxValue();
+        int GetMinValue();
         void GetFirstWhereMaxCount();
         void GetFirstWhereMinCount();
         void CountAllAndSum();

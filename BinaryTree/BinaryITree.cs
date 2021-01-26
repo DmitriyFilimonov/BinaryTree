@@ -33,68 +33,35 @@ namespace BinaryTree
         {
             if (_root == null)
             {
-                _root = new Node();
-                _root.Value = value;
-                _root.Count++;
+                _root = new Node(value);
                 return;
             }
-            if (value < _root.Value)
-            {
-                if (_root.Left == null)
-                {
-                    _root.Left = new Node(value);
-                    return;
-                }
-                Add(value, _root.Left);
-            }
-            if (value > _root.Value)
-            {
-                if (_root.Right == null)
-                {
-                    _root.Right = new Node(value);
-                    return;
-                }
-                Add(value, _root.Right);
-            }
-            return;
+            Add(value, _root);
         }
-        private void Add(int value, Node currentNode)
+        private Node Add(int value, Node currentNode)
         {
-            if (value == currentNode.Value)
+            if (currentNode==null)
             {
-                currentNode.Count++;
-                return;
+                currentNode = new Node(value);
+                return currentNode;
             }
+
             if (value < currentNode.Value)
             {
-                if (currentNode.Left == null)
-                {
-                    currentNode.Left = new Node(value);
-                    return;
-                }
-                if (value > currentNode.Left.Value)
-                {
-                    currentNode.Right = new Node(currentNode.Value, currentNode.Count);
-                    currentNode.Value = value;
-                    return;
-                }
-                Add(value, currentNode.Left);
+                currentNode.Left = Add(value, currentNode.Left);
             }
+
             if (value > currentNode.Value)
             {
-                if (currentNode.Right==null)
-                {
-                    currentNode.Right = new Node(value);
-                    return;
-                }
-                if (value > currentNode.Right.Value)
-                {
-                    currentNode.Left = new Node(currentNode.Value, currentNode.Count);
-                    currentNode.Value = value;
-                }
-                Add(value, currentNode.Right);
+                currentNode.Right = Add(value, currentNode.Right);
             }
-            return;
+
+            if (value==currentNode.Value)
+            {
+                currentNode.Count++;
+            }
+
+            return currentNode;
         }
 
         public void CountAllAndSum()
@@ -102,9 +69,30 @@ namespace BinaryTree
             throw new NotImplementedException();
         }
 
-        public void DeleteOnByValue(int value)
+        public void DeleteOneByValue(int value)
         {
-            ;
+            DeleteOneByValue(value, _root);
+        }
+        private Node DeleteOneByValue(int value, Node currentNode)
+        {
+            if (currentNode == null)
+            {
+                return currentNode;
+            }
+
+            if (value == currentNode.Value)
+            {
+                if ()
+                currentNode = currentNode.Right;
+                return currentNode;
+            }
+            
+            if (value>currentNode.Value)
+            {
+                currentNode.Right = DeleteOneByValue(value, currentNode.Right);
+            }
+           
+            return currentNode;
         }
 
         public void GetElementByValue(int value)

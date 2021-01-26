@@ -75,30 +75,44 @@ namespace BinaryTree
         }
         private Node DeleteOneByValue(int value, Node subRoot)
         {
-            if (subRoot==null)
+            if (subRoot == null)
+            {
                 return subRoot;
-            if (value < subRoot.Value)
-                subRoot = DeleteOneByValue(value, subRoot.Left);
-            else if (value > subRoot.Value)
-                subRoot = DeleteOneByValue(value, subRoot.Right);
-            else if ((subRoot.Left != null) && (subRoot.Right != null))
-            {
-                Node tmpSubRoot = GetMinNode(subRoot.Right);
-                subRoot.Value = tmpSubRoot.Value;
-                subRoot.Count = tmpSubRoot.Count;
-                subRoot.Right = DeleteOneByValue(value, subRoot.Right);
             }
-            else
+            if (value == subRoot.Value)
             {
-                if (subRoot.Left != null)
-                    subRoot = subRoot.Left;
-                else if (subRoot.Right != null)
-                    subRoot = subRoot.Right;
+                Node tmp;
+                if (subRoot.Right == null)
+                    tmp = subRoot.Left;
                 else
                 {
-                    subRoot = null;
+                    Node ptr = subRoot.Right;
+                    if (ptr.Left == null)
+                    {
+                        ptr.Left = subRoot.Left;
+                        tmp = ptr;
+                    }
+                    else
+                    {
+                        Node pmin = ptr.Left;
+                        while (pmin.Left != null)
+                        {
+                            ptr = pmin;
+                            pmin = ptr.Left;
+                        }
+                        ptr.Left = pmin.Right;
+                        pmin.Left = subRoot.Left;
+                        pmin.Right = subRoot.Right;
+                        tmp = pmin;
+                    }
                 }
+                subRoot = null;
+                return tmp;
             }
+            else if (value < subRoot.Value)
+                subRoot.Left = DeleteOneByValue(value, subRoot.Left);
+            else
+                subRoot.Right = DeleteOneByValue(value, subRoot.Right);
             return subRoot;
         }
 

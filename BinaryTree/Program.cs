@@ -15,7 +15,14 @@ namespace BinaryTree
             tree.Add(13);
             tree.Add(6);
 
-            tree.DeleteOneByValue(10);
+            //var root = new Node(5);
+            //root.Right = new Node(6);
+            //root.Right.Right = new Node(7);
+
+            //var tmpNode = root.Right.Right;
+            //tmpNode = null;
+
+            tree.DeleteOneByValue(9);
         }
     }
 }
